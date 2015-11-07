@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0f3107436248a1d4d9d9481ac9cc1866
-timeCreated: 1446852296
+timeCreated: 1446853284
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -384,8 +384,8 @@ TextureImporter:
     21300754: spritesheet_377
     21300756: spritesheet_378
     21300758: spritesheet_379
-    21300760: spritesheet_380
-    21300762: spritesheet_381
+    21300760: map_node
+    21300762: map_path
     21300764: spritesheet_382
     21300766: spritesheet_383
     21300768: spritesheet_384
@@ -444,7 +444,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -4250,7 +4250,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spritesheet_380
+    - name: map_node
       rect:
         serializedVersion: 2
         x: 0
@@ -4260,7 +4260,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spritesheet_381
+    - name: map_path
       rect:
         serializedVersion: 2
         x: 8

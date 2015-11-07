@@ -6,12 +6,21 @@ public class PlayerShot : MonoBehaviour {
     public GameObject bullet;
     public GameObject shotSpot;
 
+    bool canShoot = true;
+
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && canShoot)
         {
-            Object tempBullet;
-            tempBullet = Instantiate(bullet, shotSpot.transform.position, Quaternion.identity);
-            //.GetComponent<>();
+            StartCoroutine(shotDelay());
         }
 	}
+
+    IEnumerator shotDelay()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(.1f);
+        Object tempBullet;
+        tempBullet = Instantiate(bullet, shotSpot.transform.position, Quaternion.identity);
+        canShoot = true;
+    }
 }
