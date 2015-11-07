@@ -3,14 +3,21 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 
+    public int health;
+
     Vector2 InitialPosition;
     Vector2 currentVelocity;
+
+    public AudioClip deathSound;
+    private AudioSource audioSource;
 
 	void Start ()
     {
         InitialPosition = new Vector2(1.6f, Random.Range(-.65f, .65f));
         transform.position = InitialPosition;
         currentVelocity = new Vector2(-1, 0);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update ()
@@ -27,15 +34,26 @@ public class EnemyMovement : MonoBehaviour {
     {
         if(c.gameObject.tag == "Bullet")
         {
-            if (c.gameObject.transform.position.y > 0)
+            health -= 1;
+
+            if (health <= 0)
             {
-                currentVelocity = new Vector2(-1, 1);
+                GetComponent<Rigidbody2D>().isKinematic = false;
+
+                audioSource.PlayOneShot(deathSound);
+
+                if (c.gameObject.transform.position.y > 0)
+                {
+                    currentVelocity = new Vector2(-1, 1);
+                }
+                else
+                {
+                    currentVelocity = new Vector2(-1, -1);
+                }
+                //Destroy(gameObject);
             }
-            else
-            {
-                currentVelocity = new Vector2(-1, -1);
-            }
-            //Destroy(gameObject);
+
+            Destroy(c.gameObject);
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Bullets : MonoBehaviour {
 
-    public float maxSpeed;
+    public float xSpeed;
+    public float ySpeed;
     Vector2 shotSpeed;
 
 	void Start () {
-        shotSpeed = new Vector2(maxSpeed, 0);
+        shotSpeed = new Vector2(xSpeed, ySpeed);
 	}
 	
 	void Update () {
