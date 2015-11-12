@@ -9,11 +9,20 @@ public class PlayerShot : MonoBehaviour {
     public AudioClip shotSound;
     private AudioSource audioSource;
 
+    private int shotDamage;
+    private int shotSpread;
+    private float rateOfFire;
+
     bool canShoot = true;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        shotDamage = GetComponent<PlayerStats>().shotDamage;
+        shotSpread = GetComponent<PlayerStats>().shotSpread;
+        rateOfFire = GetComponent<PlayerStats>().rateOfFire;
+
     }
 
     void Update () {
@@ -26,7 +35,6 @@ public class PlayerShot : MonoBehaviour {
     IEnumerator shotDelay()
     {
         canShoot = false;
-        yield return new WaitForSeconds(.1f);
 
         audioSource.PlayOneShot(shotSound);
 
@@ -34,7 +42,9 @@ public class PlayerShot : MonoBehaviour {
         tempBullet1 = Instantiate(bullet, shotSpot.transform.position, Quaternion.identity) as GameObject;
         tempBullet1.GetComponent<Bullets>().xSpeed = 1;
         tempBullet1.GetComponent<Bullets>().ySpeed = 0;
-
+        tempBullet1.GetComponent<Bullets>().damage = shotDamage;
+        
+        /*
         if (Input.GetKey(KeyCode.LeftShift))
         {
             GameObject tempBullet2;
@@ -59,7 +69,9 @@ public class PlayerShot : MonoBehaviour {
             tempBullet3.GetComponent<Bullets>().xSpeed = 1;
             tempBullet3.GetComponent<Bullets>().ySpeed = -.4f;
         }
+        */
 
+        yield return new WaitForSeconds(rateOfFire);
         canShoot = true;
     }
 }

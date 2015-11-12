@@ -6,8 +6,23 @@ public class PlayerControl : MonoBehaviour {
     public float speed;
     public float maxSpeed;
 
+    public bool isShielded = false;
+
     Vector2 currentVelocity;
     bool canMove = true;
+    public bool canShield = true;
+
+    private int shieldCD;
+
+    public GameObject shield;
+    private AudioSource audioSource;
+    public AudioClip shieldSound;
+
+    void Start()
+    {
+        shieldCD = GetComponent<PlayerStats>().shieldCooldown;
+        audioSource = GetComponent<AudioSource>();
+    }
 
 	void Update () {
 
@@ -15,6 +30,14 @@ public class PlayerControl : MonoBehaviour {
 
         if (canMove)
         {
+
+            if (Input.GetKeyDown(KeyCode.C) && canShield)
+            {
+                StartCoroutine(Shield());
+                StartCoroutine(ShieldCD(shieldCD));
+            }
+
+
             transform.position = new Vector2(Mathf.Clamp(transform.position.x, -1.2f, 1.2f), Mathf.Clamp(transform.position.y, -.7f, .7f));
 
             currentVelocity = new Vector2(Mathf.Clamp(currentVelocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(currentVelocity.y, -maxSpeed, maxSpeed));
@@ -69,10 +92,32 @@ public class PlayerControl : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if(c.gameObject.tag == "Enemy")
+        if(c.gameObject.tag == "Enemy" && !isShielded)
         {
             currentVelocity = new Vector2(0, -1);
             canMove = false;
         }
+    }
+
+    IEnumerator Shield()
+    {
+        isShielded = true;
+        audioSource.PlayOneShot(shieldSound);
+        GameObject tempShield = Instantiate(shield, transform.position, Quaternion.identity) as GameObject;
+        tempShield.transform.parent = transform;
+        Debug.Log("IS SHIELDED");
+        yield return new WaitForSeconds(5);
+        isShielded = false;
+        Destroy(tempShield);
+        Debug.Log("NO LONGER SHIELDED");
+    }
+
+    IEnumerator ShieldCD(int cd)
+    {
+        canShield = false;
+        Debug.Log("SHIELD RECHARGING");
+        yield return new WaitForSeconds(cd);
+        canShield = true;
+        Debug.Log("SHIELD AVAILABLE");
     }
 }

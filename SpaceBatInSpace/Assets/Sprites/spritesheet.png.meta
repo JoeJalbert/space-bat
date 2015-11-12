@@ -1,13 +1,13 @@
 fileFormatVersion: 2
 guid: 0f3107436248a1d4d9d9481ac9cc1866
-timeCreated: 1446853284
+timeCreated: 1447359028
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: spritesheet_0
     21300002: enemy_1
     21300004: spritesheet_2
-    21300006: spritesheet_3
+    21300006: bat_shield
     21300008: spritesheet_4
     21300010: spritesheet_5
     21300012: spritesheet_6
@@ -480,23 +480,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spritesheet_3
+    - name: bat_shield
       rect:
         serializedVersion: 2
         x: 24
-        y: 152
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 152
-        width: 8
-        height: 8
+        y: 144
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -674,26 +664,6 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 144
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spritesheet_23
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 144
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: spritesheet_24
-      rect:
-        serializedVersion: 2
-        x: 32
         y: 144
         width: 8
         height: 8

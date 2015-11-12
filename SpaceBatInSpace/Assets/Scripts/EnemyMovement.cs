@@ -34,11 +34,12 @@ public class EnemyMovement : MonoBehaviour {
     {
         if(c.gameObject.tag == "Bullet")
         {
-            health -= 1;
+            health -= c.gameObject.GetComponent<Bullets>().damage;
 
             if (health <= 0)
             {
                 GetComponent<Rigidbody2D>().isKinematic = false;
+                GetComponent<BoxCollider2D>().enabled = false;
 
                 audioSource.PlayOneShot(deathSound);
 
