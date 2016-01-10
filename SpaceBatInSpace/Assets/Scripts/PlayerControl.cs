@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour {
             }
 
 
-            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -1.2f, 1.2f), Mathf.Clamp(transform.position.y, -.7f, .7f));
+            //transform.position = new Vector2(Mathf.Clamp(transform.position.x, -1.2f, 1.2f), Mathf.Clamp(transform.position.y, -.7f, .7f));
 
             currentVelocity = new Vector2(Mathf.Clamp(currentVelocity.x, -maxSpeed, maxSpeed), Mathf.Clamp(currentVelocity.y, -maxSpeed, maxSpeed));
 
@@ -74,13 +74,13 @@ public class PlayerControl : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                speed = .03f;
-                maxSpeed = .25f;
+                speed = .1f;
+                maxSpeed = 1f;
             }
             else
             {
-                speed = .1f;
-                maxSpeed = 1;
+                speed = 1f;
+                maxSpeed = 3;
             }
 
             if (!Input.anyKey)

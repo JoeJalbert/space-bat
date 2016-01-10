@@ -40,8 +40,8 @@ public class PlayerShot : MonoBehaviour {
 
         GameObject tempBullet1;
         tempBullet1 = Instantiate(bullet, shotSpot.transform.position, Quaternion.identity) as GameObject;
-        tempBullet1.GetComponent<Bullets>().xSpeed = 1;
-        tempBullet1.GetComponent<Bullets>().ySpeed = 0;
+        tempBullet1.GetComponent<Bullets>().xSpeed = 0;
+        tempBullet1.GetComponent<Bullets>().ySpeed = 1;
         tempBullet1.GetComponent<Bullets>().damage = shotDamage;
         
         /*

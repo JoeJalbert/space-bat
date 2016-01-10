@@ -10,17 +10,45 @@ public class MapGen : MonoBehaviour {
 
     public int mapLength;
 
+	public float scatter;
+
 	void Start () {
 
         tempNodes = new GameObject[mapLength];
 
         for(int i = 0; i <= tempNodes.Length - 1; i++)
         {
-            float tempFloat = 2.66f / mapLength;
+            float tempFloat = 12.5f / mapLength;
 
-            tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (1.2f + tempFloat), Random.Range(-.2f, .2f), 0), Quaternion.identity) as GameObject;
-            tempNodes[i].GetComponent<MapNode>().id = i;
+            tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (6.25f + tempFloat), Random.Range(-scatter + 2, scatter), 0), Quaternion.identity) as GameObject;
+			tempNodes[i].GetComponent<MapNode>().id = i + "a";
+
+			// Sets Mommy to red.
+
+			if(i == tempNodes.Length - 1)
+			{
+				tempNodes[i].GetComponent<SpriteRenderer>().color = new Color (255, 0, 0);
+			}
+
+			// Chance to generate a second node on the column.
+
+			if(Random.Range (0,10) <= 2){
+				tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (6.25f + tempFloat), Random.Range(-scatter + 2, scatter), 0), Quaternion.identity) as GameObject;
+				tempNodes[i].GetComponent<MapNode>().id = i + "b";
+
+				// Chance to generate a third node on the column.
+
+				if(Random.Range (0,10) <= 2){
+					tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (6.25f + tempFloat), Random.Range(-scatter + 2, scatter), 0), Quaternion.identity) as GameObject;
+					tempNodes[i].GetComponent<MapNode>().id = i + "c";
+				}
+			}
+
         }
+
+		// Draw pips between nodes.
+
+		/*
 
         for (int i = 0; i <= tempNodes.Length - 1; i++)
         {
@@ -34,12 +62,16 @@ public class MapGen : MonoBehaviour {
 
                 int distBetweenPips = (int)Mathf.Ceil(Vector3.Distance(tempNodes[i].transform.position, tempNodes[i + 1].transform.position));
                 int numOfPips = 1;
-                for (int j = 0; j < distBetweenPips; j = j + (distBetweenPips/numOfPips))
+
+
+				for (int j = 0; j < distBetweenPips; j = j + (distBetweenPips/numOfPips))
                 {
                     Instantiate(mapPath, (tempNodes[i].transform.position + tempNodes[i + 1].transform.position) / 2, Quaternion.identity);
                 }
             }
         }
+
+        */
 
         /*
         for (int i = 0; i <= mapLength; i++)
@@ -59,13 +91,13 @@ public class MapGen : MonoBehaviour {
     }
 
     public Vector3 Move1StepLeft(Vector3 _currentPos) {
-        _currentPos += new Vector3(.4f, .2f, 0);
+        _currentPos += new Vector3(3.6f, .6f, 0);
         return _currentPos;
     }
 
     public Vector3 Move1StepRight(Vector3 _currentPos)
     {
-        _currentPos += new Vector3(.4f, -.2f, 0);
+		_currentPos += new Vector3(3.6f, -.6f, 0);
         return _currentPos;
     }
 }

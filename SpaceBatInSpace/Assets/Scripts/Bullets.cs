@@ -17,9 +17,5 @@ public class Bullets : MonoBehaviour {
 
         GetComponent<Rigidbody2D>().velocity = shotSpeed;
 
-        if (transform.position.x > 1.4)
-        {
-            Destroy(gameObject);
-        }
 	}
 }

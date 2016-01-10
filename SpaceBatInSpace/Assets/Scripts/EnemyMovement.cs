@@ -13,9 +13,9 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Start ()
     {
-        InitialPosition = new Vector2(1.6f, Random.Range(-.65f, .65f));
-        transform.position = InitialPosition;
-        currentVelocity = new Vector2(-1, 0);
+        //InitialPosition = new Vector2(1.6f, Random.Range(-.65f, .65f));
+        //transform.position = InitialPosition;
+        currentVelocity = new Vector2(0, -5);
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -24,10 +24,12 @@ public class EnemyMovement : MonoBehaviour {
     {
         GetComponent<Rigidbody2D>().velocity = currentVelocity;
 
+		/*
         if(transform.position.x < -1.4f)
         {
             Destroy(gameObject);
         }
+        */
 	}
 
     void OnCollisionEnter2D(Collision2D c)

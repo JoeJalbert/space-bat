@@ -17,6 +17,10 @@ public class EnemySpawner : MonoBehaviour {
             StartCoroutine(spawnEnemy());
         }
 
+		Vector2 tempPos = transform.position;
+		tempPos.x = Random.Range (-2.5f, 2.5f);
+		transform.position = tempPos;
+
 	}
 
     IEnumerator spawnEnemy()
