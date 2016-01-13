@@ -25,6 +25,7 @@ public class EnemyShots : MonoBehaviour {
 		GameObject tempBullet;
 		tempBullet = Instantiate(enemyShot, shotPoint.transform.position, Quaternion.identity) as GameObject;
 		tempBullet.GetComponent<EnemyBullet> ().speedMultiplier = shotSpeed;
+		tempBullet.transform.parent = gameObject.transform.parent;
 
 		canShoot = true;
 	}

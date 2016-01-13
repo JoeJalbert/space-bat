@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour {
 
 	public float frequency;
 
+	public GameObject battleContainer;
+
     void Start () {
 	
 	}
@@ -29,7 +31,8 @@ public class EnemySpawner : MonoBehaviour {
     {
         readyToSpawn = false;
         yield return new WaitForSeconds(Random.Range(0f, frequency));
-        Instantiate(enemy[(Random.Range(0, enemy.Length))], transform.position, Quaternion.identity);
-        readyToSpawn = true;
+        GameObject tempEnemy = Instantiate(enemy[(Random.Range(0, enemy.Length))], transform.position, Quaternion.identity) as GameObject;
+		tempEnemy.transform.parent = battleContainer.transform;
+		readyToSpawn = true;
     }
 }

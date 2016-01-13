@@ -12,7 +12,7 @@ public class MapNode : MonoBehaviour {
 
     void OnEnable()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("MapPlayer");
 		mapStats = GameObject.FindWithTag ("MapStats");
     }
 
@@ -27,7 +27,10 @@ public class MapNode : MonoBehaviour {
 
 		if (mapStats.GetComponent<MapStats> ().maxTravelDistance > Vector2.Distance (transform.position, player.transform.position)) 
 		{
-			mapStats.GetComponent<MapStats>().maxTravelDistance -= Vector2.Distance(transform.position, player.transform.position);
+			float distance = Vector2.Distance(transform.position, player.transform.position);
+			mapStats.GetComponent<MapStats>().currentTravelDistance = distance;
+			mapStats.GetComponent<MapStats>().maxTravelDistance -= distance;
+
 			player.GetComponent<MapControl>().SetNewLocation(this.gameObject);
 		}
 	}

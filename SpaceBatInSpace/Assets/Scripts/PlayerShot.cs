@@ -11,6 +11,9 @@ public class PlayerShot : MonoBehaviour {
 
     private int shotDamage;
     private int shotSpread;
+
+	public float shotSpeed;
+
     private float rateOfFire;
 
     bool canShoot = true;
@@ -41,7 +44,7 @@ public class PlayerShot : MonoBehaviour {
         GameObject tempBullet1;
         tempBullet1 = Instantiate(bullet, shotSpot.transform.position, Quaternion.identity) as GameObject;
         tempBullet1.GetComponent<Bullets>().xSpeed = 0;
-        tempBullet1.GetComponent<Bullets>().ySpeed = 1;
+        tempBullet1.GetComponent<Bullets>().ySpeed = shotSpeed;
         tempBullet1.GetComponent<Bullets>().damage = shotDamage;
 
 		Physics2D.IgnoreCollision(tempBullet1.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
