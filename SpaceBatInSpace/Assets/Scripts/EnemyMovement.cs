@@ -4,18 +4,20 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour {
 
     public int health;
-
+	
     Vector2 InitialPosition;
     Vector2 currentVelocity;
 
     public AudioClip deathSound;
     private AudioSource audioSource;
 
+	public Vector2 speed;
+	
 	void Start ()
     {
         //InitialPosition = new Vector2(1.6f, Random.Range(-.65f, .65f));
         //transform.position = InitialPosition;
-        currentVelocity = new Vector2(0, -5);
+        currentVelocity = speed;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -40,8 +42,8 @@ public class EnemyMovement : MonoBehaviour {
 
             if (health <= 0)
             {
-                GetComponent<Rigidbody2D>().isKinematic = false;
-                GetComponent<BoxCollider2D>().enabled = false;
+                //GetComponent<Rigidbody2D>().isKinematic = false;
+                //GetComponent<BoxCollider2D>().enabled = false;
 
                 audioSource.PlayOneShot(deathSound);
 
@@ -56,7 +58,13 @@ public class EnemyMovement : MonoBehaviour {
                 //Destroy(gameObject);
             }
 
-            Destroy(c.gameObject);
+            //Destroy(c.gameObject);
         }
+
+		if(c.gameObject.layer == LayerMask.NameToLayer("Wall"))
+		{
+			Debug.Log ("It hit");
+			Destroy (gameObject);
+		}
     }
 }

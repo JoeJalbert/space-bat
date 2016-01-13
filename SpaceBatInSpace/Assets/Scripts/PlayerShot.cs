@@ -43,6 +43,9 @@ public class PlayerShot : MonoBehaviour {
         tempBullet1.GetComponent<Bullets>().xSpeed = 0;
         tempBullet1.GetComponent<Bullets>().ySpeed = 1;
         tempBullet1.GetComponent<Bullets>().damage = shotDamage;
+
+		Physics2D.IgnoreCollision(tempBullet1.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+
         
         /*
         if (Input.GetKey(KeyCode.LeftShift))

@@ -26,6 +26,10 @@ public class PlayerControl : MonoBehaviour {
 
 	void Update () {
 
+		Quaternion tempRot = transform.rotation;
+		tempRot.z = 0;
+		transform.rotation = tempRot;
+
         GetComponent<Rigidbody2D>().velocity = currentVelocity;
 
         if (canMove)
@@ -94,7 +98,7 @@ public class PlayerControl : MonoBehaviour {
     {
         if(c.gameObject.tag == "Enemy" && !isShielded)
         {
-            currentVelocity = new Vector2(0, -1);
+            currentVelocity = new Vector2(0, -5);
             canMove = false;
         }
     }

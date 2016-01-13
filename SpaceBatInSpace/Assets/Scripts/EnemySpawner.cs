@@ -6,6 +6,8 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject[] enemy;
     bool readyToSpawn = true;
 
+	public float frequency;
+
     void Start () {
 	
 	}
@@ -26,7 +28,7 @@ public class EnemySpawner : MonoBehaviour {
     IEnumerator spawnEnemy()
     {
         readyToSpawn = false;
-        yield return new WaitForSeconds(Random.Range(0, 5));
+        yield return new WaitForSeconds(Random.Range(0f, frequency));
         Instantiate(enemy[(Random.Range(0, enemy.Length))], transform.position, Quaternion.identity);
         readyToSpawn = true;
     }

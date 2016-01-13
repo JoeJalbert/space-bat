@@ -3,12 +3,12 @@ using System.Collections;
 
 public class EnemyBullet : MonoBehaviour {
 
-	public float shotSpeed;
-	
 	public int damage;
 
 	public Vector2 target;
 	Vector3 tempTarget;
+
+	public float speedMultiplier;
 	
 	void Start () {
 
@@ -19,18 +19,14 @@ public class EnemyBullet : MonoBehaviour {
 	
 	void Update () { 
 
+		transform.position += tempTarget.normalized * speedMultiplier;
 
-		transform.position += tempTarget.normalized * 0.01f;
-
-		//transform.position = Vector2.MoveTowards (transform.position, target, shotSpeed);
-		
-		if (transform.position.x < -1.4)
-		{
-			Destroy(gameObject);
-		}
 	}
 
-	void OnCollisionEnter(){
-
+	void OnCollisionEnter2D(Collision2D c)
+	{
+		if (c.gameObject.layer == LayerMask.NameToLayer ("Wall")) {
+			Destroy(gameObject);
+		}
 	}
 }

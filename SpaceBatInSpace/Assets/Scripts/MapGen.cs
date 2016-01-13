@@ -22,6 +22,7 @@ public class MapGen : MonoBehaviour {
 
             tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (6.25f + tempFloat), Random.Range(-scatter + 2, scatter), 0), Quaternion.identity) as GameObject;
 			tempNodes[i].GetComponent<MapNode>().id = i + "a";
+			tempNodes[i].transform.parent = gameObject.transform;
 
 			// Sets Mommy to red.
 
@@ -35,12 +36,16 @@ public class MapGen : MonoBehaviour {
 			if(Random.Range (0,10) <= 2){
 				tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (6.25f + tempFloat), Random.Range(-scatter + 2, scatter), 0), Quaternion.identity) as GameObject;
 				tempNodes[i].GetComponent<MapNode>().id = i + "b";
+				tempNodes[i].transform.parent = gameObject.transform;
+
 
 				// Chance to generate a third node on the column.
 
 				if(Random.Range (0,10) <= 2){
 					tempNodes[i] = Instantiate(mapNode, new Vector3(tempFloat + (i * tempFloat) - (6.25f + tempFloat), Random.Range(-scatter + 2, scatter), 0), Quaternion.identity) as GameObject;
 					tempNodes[i].GetComponent<MapNode>().id = i + "c";
+					tempNodes[i].transform.parent = gameObject.transform;
+
 				}
 			}
 

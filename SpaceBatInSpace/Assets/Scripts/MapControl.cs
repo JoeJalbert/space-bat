@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class MapControl : MonoBehaviour {
 
+	public GameObject mapContainer;
+
     public GameObject mapGen;
     public GameObject currentPosition;
 
@@ -18,7 +20,8 @@ public class MapControl : MonoBehaviour {
 
 	void Update(){
 		if (Input.GetKeyDown (KeyCode.Return)) {
-			Application.LoadLevel(4);
+			Application.LoadLevelAdditive(4);
+			mapContainer.SetActive(false);
 		}
 
 		planetText.text = "Planet " + currentPosition.GetComponent<MapNode>().id;
@@ -30,9 +33,6 @@ public class MapControl : MonoBehaviour {
         Vector3 tempo = currentPosition.transform.position;
         tempo.z = -1;
         transform.position = tempo;
-
-        //Routes = currentPosition.GetComponent<MapNode>().Connections;
-
     }
 	
     IEnumerator DelayStart()

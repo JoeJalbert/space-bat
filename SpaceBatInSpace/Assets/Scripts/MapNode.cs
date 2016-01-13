@@ -8,10 +8,12 @@ public class MapNode : MonoBehaviour {
     //public List<GameObject> Connections = new List<GameObject>();
 
     private GameObject player;
+	public GameObject mapStats;
 
-    void Start()
+    void OnEnable()
     {
         player = GameObject.FindWithTag("Player");
+		mapStats = GameObject.FindWithTag ("MapStats");
     }
 
 	void OnMouseDown ()
@@ -23,9 +25,9 @@ public class MapNode : MonoBehaviour {
         } 
         */
 
-		if (player.GetComponent<MapStats> ().maxTravelDistance > Vector2.Distance (transform.position, player.transform.position)) 
+		if (mapStats.GetComponent<MapStats> ().maxTravelDistance > Vector2.Distance (transform.position, player.transform.position)) 
 		{
-			player.GetComponent<MapStats>().maxTravelDistance -= Vector2.Distance(transform.position, player.transform.position);
+			mapStats.GetComponent<MapStats>().maxTravelDistance -= Vector2.Distance(transform.position, player.transform.position);
 			player.GetComponent<MapControl>().SetNewLocation(this.gameObject);
 		}
 	}
@@ -35,7 +37,7 @@ public class MapNode : MonoBehaviour {
 		GetComponent<LineRenderer> ().SetPosition (0, transform.position);
 		GetComponent<LineRenderer> ().SetPosition (1, player.transform.position);
 
-		if (player.GetComponent<MapStats> ().maxTravelDistance < Vector2.Distance (transform.position, player.transform.position)) {
+		if (mapStats.GetComponent<MapStats> ().maxTravelDistance < Vector2.Distance (transform.position, player.transform.position)) {
 			GetComponent<LineRenderer> ().SetColors (new Color (255, 0, 0), new Color (255, 0, 0));
 		} else {
 			GetComponent<LineRenderer>().SetColors(new Color(255, 255, 255), new Color(255, 255, 255));
