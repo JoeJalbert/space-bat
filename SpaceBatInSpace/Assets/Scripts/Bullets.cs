@@ -13,6 +13,7 @@ public class Bullets : MonoBehaviour {
         shotSpeed = new Vector2(xSpeed, ySpeed);
 
 		Physics2D.IgnoreLayerCollision (8, 0, true);
+		Physics2D.IgnoreLayerCollision (8, 11, true);
 	}
 
 	void OnCollisionEnter2D(Collision2D c){

@@ -24,7 +24,7 @@ public class MapControl : MonoBehaviour {
 			mapContainer.SetActive(false);
 		}
 
-		planetText.text = "Planet " + currentPosition.GetComponent<MapNode>().id;
+		planetText.text = "Planet " + currentPosition.GetComponent<MapNode>().planetName;
 	}
 
     public void SetNewLocation(GameObject newLocation)

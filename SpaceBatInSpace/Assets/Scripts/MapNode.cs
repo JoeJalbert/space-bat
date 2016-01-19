@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class MapNode : MonoBehaviour {
 
     public string id;
-    //public List<GameObject> Connections = new List<GameObject>();
+
+	public string planetName;
 
     private GameObject player;
 	public GameObject mapStats;

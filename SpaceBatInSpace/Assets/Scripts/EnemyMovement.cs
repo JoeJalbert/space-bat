@@ -36,33 +36,29 @@ public class EnemyMovement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        if(c.gameObject.tag == "Bullet")
-        {
-            health -= c.gameObject.GetComponent<Bullets>().damage;
+        if (c.gameObject.tag == "Bullet" && health > 0) {
+			health -= c.gameObject.GetComponent<Bullets> ().damage;
 
-            if (health <= 0)
-            {
-                //GetComponent<Rigidbody2D>().isKinematic = false;
-                //GetComponent<BoxCollider2D>().enabled = false;
+			if (health <= 0) {
+				//GetComponent<Rigidbody2D>().isKinematic = false;
+				//GetComponent<BoxCollider2D>().enabled = false;
 
-                audioSource.PlayOneShot(deathSound);
+				audioSource.PlayOneShot (deathSound);
 
-                if (c.gameObject.transform.position.y > 0)
-                {
-                    currentVelocity = new Vector2(-1, 1);
-                }
-                else
-                {
-                    currentVelocity = new Vector2(-1, -1);
-                }
-                //Destroy(gameObject);
-            }
+				if (c.gameObject.transform.position.x < 0) {
+					currentVelocity = new Vector2 (-5, 5);
+				} else {
+					currentVelocity = new Vector2 (5, 5);
+				}
+				//Destroy(gameObject);
+			}
 
-            //Destroy(c.gameObject);
-        }
+			//Destroy(c.gameObject);
+		} else {
+			Physics2D.IgnoreCollision(GetComponent<Collider2D>(), c.collider, true);
+		}
 
-		if(c.gameObject.layer == LayerMask.NameToLayer("Wall"))
-		{
+		if (c.gameObject.layer == LayerMask.NameToLayer ("Wall") || c.gameObject.layer == LayerMask.NameToLayer("Side")) {
 			Debug.Log ("It hit");
 			Destroy (gameObject);
 		}
