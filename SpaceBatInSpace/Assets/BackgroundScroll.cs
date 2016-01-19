@@ -4,14 +4,17 @@ using System.Collections;
 
 public class BackgroundScroll : MonoBehaviour {
 
-	public Sprite[] spaceBackgrounds;
+	void Update () 
+	{
+		MeshRenderer mr = GetComponent<MeshRenderer> ();
 
-	void Start () {
-	
+		Material mat = mr.material;
+
+		Vector2 offset = mat.mainTextureOffset;
+
+		offset.y += Time.deltaTime / 15;
+
+		mat.mainTextureOffset = offset;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
